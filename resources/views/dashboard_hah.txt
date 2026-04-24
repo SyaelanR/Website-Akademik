@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Sistem Manajemen Sekolah</title>
+    <!-- Tailwind CSS CDN -->
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* Custom styles */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom scrollbar for better aesthetics */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        /* Sidebar transition */
+        .sidebar {
+            transition: transform 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar -->
+        <aside id="sidebar" class="sidebar bg-white w-64 min-h-screen flex-shrink-0 shadow-lg fixed lg:relative z-50 transform -translate-x-full lg:translate-x-0">
+            <div class="p-6">
+                <a href="#" class="flex items-center space-x-3">
+                    <i class="fa-solid fa-school text-3xl text-indigo-600"></i>
+                    <span class="text-2xl font-bold text-gray-800">EduSys</span>
+                </a>
+            </div>
+            <nav class="mt-6">
+                <a href="#" class="flex items-center px-6 py-3 text-gray-700 bg-gray-200 font-semibold">
+                    <i class="fa-solid fa-tachometer-alt w-6 h-6 mr-3"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="{{ route('manajemenSiswa') }}" class="flex items-center px-6 py-3 text-gray-600 hover:bg-gray-100 hover:font-semibold">
+                    <i class="fa-solid fa-user-graduate w-6 h-6 mr-3"></i>
+                    <span>Manajemen Siswa</span>
+                </a>
+                <a href="#" class="flex items-center px-6 py-3 text-gray-600 hover:bg-gray-100 hover:font-semibold">
+                    <i class="fa-solid fa-chalkboard-user w-6 h-6 mr-3"></i>
+                    <span>Manajemen Guru</span>
+                </a>
+                <a href="#" class="flex items-center px-6 py-3 text-gray-600 hover:bg-gray-100 hover:font-semibold">
+                    <i class="fa-solid fa-calendar-alt w-6 h-6 mr-3"></i>
+                    <span>Jadwal Pelajaran</span>
+                </a>
+                <a href="#" class="flex items-center px-6 py-3 text-gray-600 hover:bg-gray-100 hover:font-semibold">
+                    <i class="fa-solid fa-book w-6 h-6 mr-3"></i>
+                    <span>Mata Pelajaran</span>
+                </a>
+                <a href="#" class="flex items-center px-6 py-3 text-gray-600 hover:bg-gray-100 hover:font-semibold">
+                    <i class="fa-solid fa-money-bill-wave w-6 h-6 mr-3"></i>
+                    <span>Keuangan</span>
+                </a>
+                <a href="#" class="flex items-center px-6 py-3 text-gray-600 hover:bg-gray-100 hover:font-semibold">
+                    <i class="fa-solid fa-cog w-6 h-6 mr-3"></i>
+                    <span>Pengaturan</span>
+                </a>
+            </nav>
+            <div class="absolute bottom-0 w-full p-6">
+                 <a href="#" class="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-100 hover:font-semibold rounded-lg">
+                    <i class="fa-solid fa-sign-out-alt w-6 h-6 mr-3"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Overlay for mobile -->
+        <div id="overlay" class="fixed inset-0 bg-black opacity-50 z-40 hidden lg:hidden"></div>
+
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col overflow-y-auto">
+            <!-- Header -->
+            <header class="bg-white shadow-md p-4 flex justify-between items-center sticky top-0 z-30">
+                <!-- Mobile Menu Button -->
+                <button id="menu-button" class="lg:hidden text-gray-600 focus:outline-none">
+                    <i class="fa-solid fa-bars text-2xl"></i>
+                </button>
+                <h1 class="text-xl md:text-2xl font-semibold text-gray-800">Selamat Datang, Admin!</h1>
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <img class="h-10 w-10 rounded-full object-cover" src="https://placehold.co/100x100/667eea/ffffff?text=A" alt="User avatar">
+                        <span class="absolute right-0 bottom-0 h-3 w-3 bg-green-500 rounded-full border-2 border-white"></span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <main class="p-6 md:p-8 flex-1">
+                <!-- Welcome Banner -->
+                <div class="bg-indigo-600 rounded-xl shadow-lg p-8 mb-8 text-white flex flex-col md:flex-row items-center justify-between">
+                    <div>
+                        <h2 class="text-3xl font-bold mb-2">Dashboard Utama EduSys</h2>
+                        <p class="text-indigo-200">Ringkasan aktivitas sekolah Anda dalam satu tampilan.</p>
+                    </div>
+                    <a href="#" class="mt-4 md:mt-0 bg-white text-indigo-600 font-semibold py-2 px-5 rounded-lg hover:bg-indigo-100 transition duration-300">
+                        Lihat Laporan
+                    </a>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div class="bg-white p-6 rounded-xl shadow-md flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-500">Total Siswa</p>
+                            <p class="text-3xl font-bold text-gray-800">1,250</p>
+                        </div>
+                        <div class="bg-indigo-100 text-indigo-600 p-4 rounded-full">
+                            <i class="fa-solid fa-user-graduate text-2xl"></i>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-md flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-500">Total Guru</p>
+                            <p class="text-3xl font-bold text-gray-800">75</p>
+                        </div>
+                        <div class="bg-teal-100 text-teal-600 p-4 rounded-full">
+                            <i class="fa-solid fa-chalkboard-user text-2xl"></i>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-md flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-500">Kelas</p>
+                            <p class="text-3xl font-bold text-gray-800">30</p>
+                        </div>
+                        <div class="bg-orange-100 text-orange-600 p-4 rounded-full">
+                            <i class="fa-solid fa-school-flag text-2xl"></i>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-md flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-500">Acara Mendatang</p>
+                            <p class="text-3xl font-bold text-gray-800">5</p>
+                        </div>
+                        <div class="bg-pink-100 text-pink-600 p-4 rounded-full">
+                            <i class="fa-solid fa-calendar-check text-2xl"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Section -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <!-- Students Overview -->
+                    <div class="lg:col-span-2 bg-white p-6 rounded-xl shadow-md">
+                        <h3 class="text-xl font-semibold mb-4 text-gray-800">Ringkasan Kehadiran Siswa</h3>
+                        <p class="text-gray-500 mb-6">Data kehadiran untuk minggu ini.</p>
+                        <!-- Placeholder for a chart -->
+                        <div class="bg-gray-200 h-64 rounded-lg flex items-center justify-center">
+                            <p class="text-gray-500">Grafik Kehadiran Akan Ditampilkan Di Sini</p>
+                        </div>
+                    </div>
+
+                    <!-- Quick Links -->
+                    <div class="bg-white p-6 rounded-xl shadow-md">
+                        <h3 class="text-xl font-semibold mb-4 text-gray-800">Akses Cepat</h3>
+                        <ul class="space-y-3">
+                            <li><a href="#" class="flex items-center p-3 bg-indigo-50 hover:bg-indigo-100 rounded-lg text-indigo-700 font-medium transition duration-300"><i class="fa-solid fa-plus-circle mr-3"></i> Tambah Siswa Baru</a></li>
+                            <li><a href="#" class="flex items-center p-3 bg-teal-50 hover:bg-teal-100 rounded-lg text-teal-700 font-medium transition duration-300"><i class="fa-solid fa-file-invoice mr-3"></i> Buat Tagihan SPP</a></li>
+                            <li><a href="#" class="flex items-center p-3 bg-orange-50 hover:bg-orange-100 rounded-lg text-orange-700 font-medium transition duration-300"><i class="fa-solid fa-bullhorn mr-3"></i> Kirim Pengumuman</a></li>
+                            <li><a href="#" class="flex items-center p-3 bg-pink-50 hover:bg-pink-100 rounded-lg text-pink-700 font-medium transition duration-300"><i class="fa-solid fa-calendar-plus mr-3"></i> Tambah Acara Sekolah</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        const menuButton = document.getElementById('menu-button');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+
+        // Function to toggle sidebar
+        const toggleSidebar = () => {
+            sidebar.classList.toggle('-translate-x-full');
+            overlay.classList.toggle('hidden');
+        };
+
+        // Event listeners
+        menuButton.addEventListener('click', toggleSidebar);
+        overlay.addEventListener('click', toggleSidebar);
+    </script>
+
+</body>
+</html>

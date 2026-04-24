@@ -1,0 +1,91 @@
+/* Umum */
+body {
+    margin: 0;
+    font-family: "Segoe UI", Tahoma, sans-serif;
+    background: #f9f9f9;
+    color: #333;
+}
+
+/* Navbar */
+.navbar {
+    background: #4f46e5;
+    color: white;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar h1 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.back-btn {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Container */
+.container {
+    padding: 2rem;
+}
+
+/* Card grid */
+.class-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.class-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.class-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+}
+
+/* Jadwal table */
+.schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2rem;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.schedule-table th,
+.schedule-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.schedule-table th {
+    background: #4f46e5;
+    color: white;
+}
+
+.schedule-table tr:hover td {
+    background: #f3f4f6;
+}
+
+/* Responsif */
+@media (max-width: 600px) {
+    .schedule-table th,
+    .schedule-table td {
+        font-size: 0.85rem;
+        padding: 0.5rem;
+    }
+}
