@@ -105,7 +105,7 @@ php artisan migrate
 php artisan serve
 ```
 ```bash
-npm run build
+npm run dev
 ```
 ---
 
