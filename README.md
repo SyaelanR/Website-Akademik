@@ -12,7 +12,7 @@ Website Akademik adalah sistem informasi berbasis web yang dirancang untuk memba
 
 Sistem memiliki 4 level pengguna dengan hak akses berbeda:
 
-* **Admin Developer** → Mengelola sistem secara keseluruhan
+* **Admin Developer** → Mengelola akun admin sekolah
 * **Admin Sekolah** → Mengelola data akademik dan pengguna
 * **Guru** → Mengelola pembelajaran dan penilaian
 * **Siswa** → Mengakses materi dan hasil belajar
@@ -34,7 +34,7 @@ Sistem memiliki 4 level pengguna dengan hak akses berbeda:
 
 * Upload & akses materi pembelajaran
 * Manajemen tugas & pengumpulan tugas
-* Interaksi antara guru dan siswa secara online
+* Penilaian dan absensi siswa
 
 ---
 
@@ -104,14 +104,16 @@ php artisan migrate
 ```bash
 php artisan serve
 ```
-
+```bash
+npm run build
+```
 ---
 
 ## 🔐 Hak Akses Pengguna
 
 | Role            | Akses Utama                  |
 | --------------- | ---------------------------- |
-| Admin Developer | Full akses sistem            |
+| Admin Developer | Kelola akun admin sekolah    |
 | Admin Sekolah   | Kelola data akademik         |
 | Guru            | Kelola pembelajaran & nilai  |
 | Siswa           | Akses materi & hasil belajar |
